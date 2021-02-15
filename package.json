@@ -1,0 +1,19 @@
+{
+  "name": "light-layout",
+  "version": "1.0.0",
+  "description": "components for sample dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lionel8/light-layout.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lionel8/light-layout/issues"
+  },
+  "homepage": "https://github.com/lionel8/light-layout#readme"
+}
