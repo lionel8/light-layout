@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "bugs": {
     "url": "https://github.com/lionel8/light-layout/issues"
   },
