@@ -1,5 +1,6 @@
 <script>
 export default {
+  name: 'TopChildItem',
   functional: true,
   props: {
     icon: {

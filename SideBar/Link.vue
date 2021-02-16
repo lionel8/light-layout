@@ -8,6 +8,7 @@
 <script>
 import { isExternal } from '@/utils'
 export default {
+  name: 'AppLink',
   props: {
     to: {
       type: String,

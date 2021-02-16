@@ -1,17 +1,15 @@
 <template>
   <div v-if="!item.hidden&&item.children" style="max-width:120px;float:left;display:block;">
-
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon||item.meta.icon" :title="onlyOneChild.meta.title" />
+          <top-child-item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon||item.meta.icon" :title="onlyOneChild.meta.title" />
         </el-menu-item>
       </app-link>
     </template>
-
     <el-submenu v-else ref="submenu" :index="resolvePath(item.path)">
       <template slot="title">
-        <item v-if="item.meta" :icon="item.meta.icon" :title="item.meta.title" />
+        <top-child-item v-if="item.meta" :icon="item.meta.icon" :title="item.meta.title" />
       </template>
 
       <template v-for="child in item.children" v-if="!child.hidden">
@@ -19,7 +17,7 @@
 
         <app-link v-else :to="resolvePath(child.path)" :key="child.name">
           <el-menu-item :index="resolvePath(child.path)">
-            <item v-if="child.meta" :icon="child.meta.icon" :title="child.meta.title" />
+            <top-child-item v-if="child.meta" :icon="child.meta.icon" :title="child.meta.title" />
           </el-menu-item>
         </app-link>
       </template>
@@ -30,13 +28,11 @@
 
 <script>
 import { isExternal } from '@/utils'
-import Item from './Item'
+import TopChildItem from './Item'
 import AppLink from './Link'
-import FixiOSBug from './FixiOSBug'
 export default {
   name: 'TopbarItem',
-  components: { Item, AppLink },
-  mixins: [FixiOSBug],
+  components: { TopChildItem, AppLink },
   props: {
     // route object
     item: {
@@ -56,6 +52,14 @@ export default {
     return {
       onlyOneChild: null
     }
+  },
+  computed: {
+    device() {
+      return this.$store.state.app.device
+    }
+  },
+  mounted() {
+    this.fixBugIniOS()
   },
   methods: {
     hasOneShowingChild(children, parent) {
@@ -87,8 +91,19 @@ export default {
     },
     isExternalLink(routePath) {
       return isExternal(routePath)
+    },
+    fixBugIniOS() {
+      const $submenu = this.$refs.submenu
+      if ($submenu) {
+        const handleMouseleave = $submenu.handleMouseleave
+        $submenu.handleMouseleave = (e) => {
+          if (this.device === 'mobile') {
+            return
+          }
+          handleMouseleave(e)
+        }
+      }
     }
-
   }
 }
 </script>
