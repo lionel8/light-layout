@@ -10,6 +10,7 @@
 import { mapGetters } from 'vuex'
 import SidebarItem from './SidebarItem'
 export default {
+  name: 'SideBar',
   components: { SidebarItem },
   computed: {
     ...mapGetters([

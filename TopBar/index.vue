@@ -10,6 +10,7 @@
 import { mapGetters } from 'vuex'
 import TopbarItem from './TopbarItem'
 export default {
+  name: 'TopBar',
   components: { TopbarItem },
   computed: {
     ...mapGetters([
