@@ -1,6 +1,6 @@
 {
   "name": "light-layout",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "components for sample dashboard",
   "main": "index.js",
   "scripts": {
