@@ -5,7 +5,7 @@
     </div>
     <div class="top-bar-menu">
       <el-menu :show-timeout="200" :default-active="$route.path" mode="horizontal" menu-trigger="hover" :background-color="bgColor" text-color="#fff" active-text-color="#409EFF">
-        <topbar-item v-for="route in permission_routers" :key="`${route.path}_${Math.random() * 10000}`" :item="route" :base-path="route.path" style="max-width:120px;float:left;display:block;"/>
+        <topbar-item v-for="route in permission_routers" :key="`${route.path}_${Math.random() * 10000}`" :item="route" :base-path="route.path" class="topbar-item-wrapper"/>
       </el-menu>
     </div>
     <div class="top-bar-info">
@@ -40,5 +40,10 @@ export default {
 }
 .nest-menu{
   min-width: 200px;
+}
+.topbar-item-wrapper{
+  max-width:120px;
+  float:left;
+  display:block;
 }
 </style>
