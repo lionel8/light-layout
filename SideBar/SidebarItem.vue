@@ -89,13 +89,8 @@ export default {
       if (this.isExternalLink(routePath)) {
         return routePath
       }
-      console.log(this.basePath + routePath)
-      if (this.item.parent_id == -1) {
-        return this.basePath
-      } else {
-        return this.basePath + routePath
-      }
-      
+      return routePath
+      // return this.basePath + routePath
     },
     isExternalLink(routePath) {
       return isExternal(routePath)
